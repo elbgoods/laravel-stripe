@@ -2,6 +2,8 @@
 
 namespace Elbgoods\Stripe\Tests\Feature;
 
+use Carbon\Carbon;
+use DateTimeInterface;
 use Elbgoods\Stripe\Tests\TestCase as BaseTestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Stripe\Customer;
@@ -24,20 +26,28 @@ abstract class TestCase extends BaseTestCase
         ]);
     }
 
-    protected function stripeCardPaymentMethod(Customer $customer): PaymentMethod
-    {
+    protected function stripeCardPaymentMethod(
+        ?Customer $customer = null,
+        ?DateTimeInterface $expiresAt = null
+    ): PaymentMethod {
+        $expiresAt = Carbon::instance($expiresAt ?? Carbon::now()->addYear());
+
         $paymentMethod = app(StripeClient::class)->paymentMethods->create([
             'type' => 'card',
             'card' => [
                 'number' => '4242424242424242',
-                'exp_month' => date('m'),
-                'exp_year' => date('Y') + 1,
+                'exp_month' => $expiresAt->month,
+                'exp_year' => $expiresAt->year,
                 'cvc' => '314',
             ],
         ]);
 
-        return app(StripeClient::class)->paymentMethods->attach($paymentMethod->id, [
-            'customer' => $customer->id,
-        ]);
+        if ($customer !== null) {
+            $paymentMethod = app(StripeClient::class)->paymentMethods->attach($paymentMethod->id, [
+                'customer' => $customer->id,
+            ]);
+        }
+
+        return $paymentMethod;
     }
 }
