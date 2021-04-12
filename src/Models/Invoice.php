@@ -20,6 +20,8 @@ use Stripe\StripeClient;
  * @property int|null $total
  * @property string|null $currency
  * @property \Carbon\Carbon|null $paid_at
+ * @property \Carbon\Carbon|null $billing_range_start
+ * @property \Carbon\Carbon|null $billing_range_end
  * @property-read \Illuminate\Database\Eloquent\Model|\Elbgoods\Stripe\Contracts\Customerable|\Elbgoods\Stripe\Concerns\HasInvoices $customerable
  */
 class Invoice extends Model

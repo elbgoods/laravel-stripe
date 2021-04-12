@@ -15,7 +15,7 @@ class CreatePaymentMethodsTable extends Migration
 
             $table->boolean('is_primary')->default(false)->index();
 
-            $table->string('stripe_payment_method_id');
+            $table->string('stripe_payment_method_id')->unique();
             $table->string('stripe_payment_method_type');
 
             $table->string('bank_name')->nullable();
