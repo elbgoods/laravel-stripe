@@ -2,17 +2,11 @@
 
 namespace Elbgoods\Stripe\Concerns;
 
-use BadMethodCallException;
 use Carbon\Carbon;
 use Elbgoods\Stripe\Models\PaymentMethod;
-use Exception;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
-use Illuminate\Support\Str;
-use Stripe\Customer;
 use Stripe\SetupIntent;
 use Stripe\StripeClient;
-use Stripe\TaxId;
 
 /**
  * @property-read \Illuminate\Database\Eloquent\Collection|\Elbgoods\Stripe\Models\PaymentMethod[] $payment_methods
@@ -52,7 +46,7 @@ trait HasPaymentMethods
             'stripe_payment_method_type' => $stripePaymentMethod->type,
         ];
 
-        if (!empty($stripePaymentMethod->card)) {
+        if (! empty($stripePaymentMethod->card)) {
             $attributes['card_brand'] = $stripePaymentMethod->card->brand;
             $attributes['card_country'] = $stripePaymentMethod->card->country;
             $attributes['last_four'] = $stripePaymentMethod->card->last4;
@@ -62,7 +56,7 @@ trait HasPaymentMethods
             )->startOfMonth()->startOfDay();
         }
 
-        if (!empty($stripePaymentMethod->sepa_debit)) {
+        if (! empty($stripePaymentMethod->sepa_debit)) {
             $attributes['bank_name'] = $stripePaymentMethod->sepa_debit->bank_name;
             $attributes['iban_country'] = $stripePaymentMethod->sepa_debit->country;
             $attributes['last_four'] = $stripePaymentMethod->sepa_debit->last4;

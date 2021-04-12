@@ -35,7 +35,7 @@ trait HasCustomer
     {
         $customer = $this->findStripeCustomer();
 
-        if (!$customer instanceof Customer) {
+        if (! $customer instanceof Customer) {
             throw (new ModelNotFoundException())->setModel(Customer::class, $this->getStripeCustomerId());
         }
 
@@ -44,7 +44,7 @@ trait HasCustomer
 
     public function findStripeCustomer(): ?Customer
     {
-        if (!$this->hasStripeCustomerId()) {
+        if (! $this->hasStripeCustomerId()) {
             return null;
         }
 
@@ -87,7 +87,7 @@ trait HasCustomer
 
     public function updateStripeCustomer(): self
     {
-        if (!$this->hasStripeCustomerId()) {
+        if (! $this->hasStripeCustomerId()) {
             throw new BadMethodCallException();
         }
 
@@ -103,12 +103,12 @@ trait HasCustomer
 
     public function updateStripeTaxInformation(string $taxId, string $type = TaxId::TYPE_EU_VAT, string $exempt = Customer::TAX_EXEMPT_NONE): self
     {
-        if (!$this->hasStripeCustomerId()) {
+        if (! $this->hasStripeCustomerId()) {
             throw new BadMethodCallException();
         }
 
         collect(app(StripeClient::class)->customers->allTaxIds($this->getStripeCustomerId())->data)
-            ->each(fn(TaxId $tax) => app(StripeClient::class)->customers->deleteTaxId(
+            ->each(fn (TaxId $tax) => app(StripeClient::class)->customers->deleteTaxId(
                 $this->getStripeCustomerId(),
                 $tax->id
             ));

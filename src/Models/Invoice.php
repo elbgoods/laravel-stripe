@@ -84,7 +84,7 @@ class Invoice extends Model
     {
         $stripeInvoice = $this->getStripeInvoice();
 
-        if($stripeInvoice === null) {
+        if ($stripeInvoice === null) {
             return false; // ToDo: Exception?
         }
 
