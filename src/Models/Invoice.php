@@ -28,7 +28,21 @@ class Invoice extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'stripe_invoice_id',
+        'stripe_invoice_status',
+        'stripe_payment_intent_status',
+        'stripe_pdf_url',
+        'stripe_invoice_number',
+        'total',
+        'currency',
+        'paid_at',
+        'billing_range_start',
+        'billing_range_end',
+    ];
+
     protected $casts = [
+        'total' => 'int',
         'paid_at' => 'datetime',
         'billing_range_start' => 'datetime',
         'billing_range_end' => 'datetime',

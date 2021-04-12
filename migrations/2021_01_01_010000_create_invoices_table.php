@@ -18,6 +18,9 @@ class CreateInvoicesTable extends Migration
             $table->string('stripe_payment_intent_status')->nullable();
             $table->string('stripe_pdf_url')->nullable();
 
+            $table->integer('total')->unsigned()->nullable();
+            $table->string('currency', 3)->nullable();
+
             $table->timestamp('billing_range_start')->nullable();
             $table->timestamp('billing_range_end')->nullable();
 

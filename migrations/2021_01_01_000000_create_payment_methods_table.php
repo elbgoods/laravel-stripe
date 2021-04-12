@@ -19,8 +19,8 @@ class CreatePaymentMethodsTable extends Migration
             $table->string('stripe_payment_method_type');
 
             $table->string('bank_name')->nullable();
-            $table->string('iban_country')->nullable();
-            $table->string('card_country')->nullable();
+            $table->string('iban_country', 2)->nullable();
+            $table->string('card_country', 2)->nullable();
             $table->string('card_brand')->nullable();
             $table->string('last_four', 4)->nullable();
             $table->date('expires_at')->nullable();
