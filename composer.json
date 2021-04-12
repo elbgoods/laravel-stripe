@@ -1,0 +1,57 @@
+{
+    "name": "elbgoods/laravel-stripe",
+    "description": "",
+    "keywords": [],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Max Staack",
+            "email": "mstaack@elbgoods.de",
+            "role": "Developer"
+        },
+        {
+            "name": "Tom Witkowski",
+            "email": "twitkowski@elbgoods.de",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.4 || ^8.0",
+        "illuminate/config": "^8.0",
+        "illuminate/database": "^8.0",
+        "illuminate/support": "^8.0",
+        "spatie/laravel-stripe-webhooks": "^2.0",
+        "stripe/stripe-php": "^7.0"
+    },
+    "require-dev": {
+        "ext-json": "*",
+        "astrotomic/phpunit-assertions": "^0.3.0",
+        "orchestra/testbench": "^6.0",
+        "phpunit/phpunit": "^9.3"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Elbgoods\\Stripe\\StripeServiceProvider"
+            ]
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Elbgoods\\Stripe\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Elbgoods\\Stripe\\Tests\\": "tests"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    }
+}
