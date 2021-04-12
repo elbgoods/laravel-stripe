@@ -2,10 +2,8 @@
 
 namespace Elbgoods\Stripe\Tests\Feature;
 
-use Elbgoods\Stripe\StripeServiceProvider;
 use Elbgoods\Stripe\Tests\TestCase as BaseTestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Orchestra\Testbench\TestCase as Orchestra;
 use Stripe\Customer;
 use Stripe\PaymentMethod;
 use Stripe\StripeClient;
@@ -22,7 +20,7 @@ abstract class TestCase extends BaseTestCase
             '--path' => [
                 __DIR__.'/../migrations',
                 __DIR__.'/../../migrations',
-            ]
+            ],
         ]);
     }
 
@@ -33,7 +31,7 @@ abstract class TestCase extends BaseTestCase
             'card' => [
                 'number' => '4242424242424242',
                 'exp_month' => date('m'),
-                'exp_year' => date('Y')+1,
+                'exp_year' => date('Y') + 1,
                 'cvc' => '314',
             ],
         ]);

@@ -34,6 +34,6 @@ class UserFactory extends Factory
 
     public function stripeCustomer(): self
     {
-        return $this->afterCreating(fn(User $user) => $user->createStripeCustomer());
+        return $this->afterCreating(fn (User $user) => $user->createStripeCustomer());
     }
 }

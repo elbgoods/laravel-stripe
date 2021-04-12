@@ -61,7 +61,7 @@
             "@composer bin all update --ansi --no-interaction --quiet"
         ],
         "bin": "echo 'composer install --dev'",
-        "fix": "vendor/bin/php-cs-fix ./src",
+        "fix": "vendor/bin/php-cs-fix ./src ./tests",
         "test": "vendor/bin/phpunit"
     }
 }

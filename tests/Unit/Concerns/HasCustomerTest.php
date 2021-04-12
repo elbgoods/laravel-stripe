@@ -4,11 +4,8 @@ namespace Elbgoods\Stripe\Tests\Unit\Concerns;
 
 use Elbgoods\Stripe\Tests\Models\User;
 use Elbgoods\Stripe\Tests\TestCase;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Str;
 use Illuminate\Testing\Assert;
-use Stripe\Customer;
-use Stripe\StripeObject;
 
 final class HasCustomerTest extends TestCase
 {

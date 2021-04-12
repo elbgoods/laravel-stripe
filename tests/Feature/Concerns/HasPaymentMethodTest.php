@@ -7,13 +7,10 @@ use Elbgoods\Stripe\Models\PaymentMethod;
 use Elbgoods\Stripe\Tests\Feature\TestCase;
 use Elbgoods\Stripe\Tests\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Support\Str;
 use Illuminate\Testing\Assert;
-use Stripe\Customer;
 use Stripe\Exception\InvalidRequestException;
 use Stripe\SetupIntent;
 use Stripe\StripeClient;
-use Stripe\StripeObject;
 use Throwable;
 
 final class HasPaymentMethodTest extends TestCase
@@ -119,7 +116,7 @@ final class HasPaymentMethodTest extends TestCase
                 $stripePaymentMethod1
             );
             Assert::assertTrue(false, 'PaymentMethod should be not retrievable.');
-        } catch(Throwable $ex) {
+        } catch (Throwable $ex) {
             Assert::assertInstanceOf(InvalidRequestException::class, $ex);
             Assert::assertStringStartsWith('No such PaymentMethod: ', $ex->getMessage());
         }
@@ -129,7 +126,7 @@ final class HasPaymentMethodTest extends TestCase
                 $stripePaymentMethod2
             );
             Assert::assertTrue(false, 'PaymentMethod should be not retrievable.');
-        } catch(Throwable $ex) {
+        } catch (Throwable $ex) {
             Assert::assertInstanceOf(InvalidRequestException::class, $ex);
             Assert::assertStringStartsWith('No such PaymentMethod: ', $ex->getMessage());
         }
