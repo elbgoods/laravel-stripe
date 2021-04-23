@@ -13,7 +13,7 @@ use Stripe\SetupIntent;
 use Stripe\StripeClient;
 use Throwable;
 
-final class HasPaymentMethodTest extends TestCase
+final class HasPaymentMethodsTest extends TestCase
 {
     public function test_setup_payment_method_intent_without_customer_id_fails(): void
     {
