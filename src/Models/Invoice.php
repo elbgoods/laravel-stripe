@@ -2,7 +2,6 @@
 
 namespace Elbgoods\Stripe\Models;
 
-use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
@@ -56,11 +55,6 @@ class Invoice extends Model
     public function getStripeInvoice(): ?StripeInvoice
     {
         return app(StripeClient::class)->invoices->retrieve($this->stripe_invoice_id);
-    }
-
-    public function sendInvoiceToCustomer(): void
-    {
-        // ToDo: think about it - stripe can send invoices itself
     }
 
     public function createAtStripe(): bool
