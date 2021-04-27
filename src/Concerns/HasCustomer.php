@@ -127,7 +127,7 @@ trait HasCustomer
 
     public function hasStripeCustomerId(): bool
     {
-        return $this->getStripeCustomerId() !== null;
+        return ! empty($this->getStripeCustomerId());
     }
 
     public function getStripeCustomerId(): ?string
