@@ -2,6 +2,7 @@
 
 namespace Elbgoods\Stripe\Models;
 
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -45,7 +46,7 @@ class PaymentMethod extends Model
         'expires_at' => 'date',
     ];
 
-    protected static function booted()
+    protected static function booted(): void
     {
         static::deleted(static function (self $model): void {
             app(StripeClient::class)->paymentMethods->detach($model->stripe_payment_method_id);
@@ -80,6 +81,16 @@ class PaymentMethod extends Model
         // mark this one primary
         return $this->forceFill([
             'is_primary' => true,
+        ])->save();
+    }
+
+    public function updateExpiresAt(int $year, int $month): bool
+    {
+        return $this->forceFill([
+            'expires_at' => Carbon::createFromDate(
+                $year,
+                $month,
+            )->startOfMonth()->startOfDay(),
         ])->save();
     }
 }
