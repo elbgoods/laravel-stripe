@@ -46,7 +46,7 @@ trait HasPaymentMethods
             'stripe_payment_method_type' => $stripePaymentMethod->type,
         ];
 
-        if (! empty($stripePaymentMethod->card)) {
+        if ($stripePaymentMethod->type === 'card') {
             $attributes['card_brand'] = $stripePaymentMethod->card->brand;
             $attributes['card_country'] = $stripePaymentMethod->card->country;
             $attributes['last_four'] = $stripePaymentMethod->card->last4;
@@ -56,7 +56,7 @@ trait HasPaymentMethods
             )->startOfMonth()->startOfDay();
         }
 
-        if (! empty($stripePaymentMethod->sepa_debit)) {
+        if ($stripePaymentMethod->type === 'sepa_debit') {
             $attributes['bank_name'] = $stripePaymentMethod->sepa_debit->bank_name;
             $attributes['iban_country'] = $stripePaymentMethod->sepa_debit->country;
             $attributes['last_four'] = $stripePaymentMethod->sepa_debit->last4;
